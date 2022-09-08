@@ -21,7 +21,7 @@ def retrieve_system_info():
             'architecture': platform.machine(),
             'hostname': socket.gethostname(),
             'ip-address': socket.gethostbyname(socket.gethostname()),
-            'mac-address': ':'.join(re.findall('..', '%012x' % uuid.getnode())),
+            'mac-address': ':'.join(re.findall('../..', '%012x' % uuid.getnode())),
             'processor': platform.processor(),
             'ram': str(round(psutil.virtual_memory().total / (1024.0 ** 3))) + " GB"}
         return json.dumps(info)
@@ -109,5 +109,9 @@ def shutdown():
     os.system("shutdown /s")
 
 
-if __name__ == '__main__':
+def main():
     app.run(host='0.0.0.0', port=5001, debug=True)
+
+
+if __name__ == '__main__':
+    main()
