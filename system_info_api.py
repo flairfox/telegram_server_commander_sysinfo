@@ -70,12 +70,12 @@ def retrieve_drives_info():
             if not disk_partition.mountpoint.startswith('/snap'):
                 disk_usage = psutil.disk_usage(disk_partition.mountpoint)
 
-                drive_info = {}
-                drive_info['mount-point'] = disk_partition.mountpoint
-                drive_info['total'] = disk_usage.total
-                drive_info['used'] = disk_usage.used
-                drive_info['free'] = disk_usage.free
-                drive_info['percent'] = disk_usage.percent
+                drive_info = {
+                    'mount-point': disk_partition.mountpoint,
+                    'total': disk_usage.total,
+                    'used': disk_usage.used,
+                    'free': disk_usage.free,
+                    'percent': disk_usage.percent}
 
                 info.append(drive_info)
 
@@ -110,4 +110,4 @@ def shutdown():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5001', debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
